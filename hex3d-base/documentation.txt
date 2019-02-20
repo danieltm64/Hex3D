@@ -1,0 +1,67 @@
+// cube < static_mesh < mesh < scene_object < core_module::component
+// rigid_body < physics_object < core_module::component
+
+first_level::first_level()
+{
+    entity ammo_box(root_entity);
+    ammo_box.add_component<cube>();
+    ammo_box.add_component<rigid_body>();
+}
+
+first_level::first_level()
+{
+    entity ammo_box(root_entity);
+
+    cube c;
+    c.set_texture("ammo_box_texture.png");
+
+    ammo_box.add_component(c);
+    ammo_box.add_component<rigid_body>();
+}
+
+first_level::first_level()
+{
+    entity ammo_box(root_entity);
+
+    ammo_box.add_component<cube>();
+    cube* c = ammo_box.get_component<cube>();
+    c->set_texture("ammo_box_texture.png");
+
+    ammo_box.add_component(c);
+    ammo_box.add_component<rigid_body>();
+}
+
+first_level::first_level()
+{
+    entity ammo_box(root_entity);
+
+    cube *c = new cube;
+    c->set_texture("ammo_box_texture.png");
+    ammo_box.add_component(c);
+
+    ammo_box.add_component<rigid_body>();
+}
+------------------------------------------------
+Devise a consistent way of including headers (i.e. Hex3D includes, then std includes, then boost includes, etc).
+------------------------------------------------
+Prepend 'HEX3D_' to the module header include guards.
+------------------------------------------------
+Make the HEX3D_ALL_DYN_LINK definition appear in a file called 'user.h' in the Hex3D project.
+------------------------------------------------
+Make sane defaults for the graphics_module::camera default constructor instead of using '= default'.
+------------------------------------------------
+Use smart pointers throughout the entire codebase.
+------------------------------------------------
+Apply the following pattern on all classes, replacing '= delete' with '= default' when appropriate.
+
+class() = delete;
+
+// copy operations
+class(const class& other) = delete;
+class& operator=(const class& other) = delete;
+
+// move operations
+class(class&& other) = delete;
+class& operator=(class&& other) = delete;
+------------------------------------------------
+#INCLUDEPATH += "C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\um"

@@ -1,0 +1,6 @@
+#ifndef HEX3D_GLOBALS_HPP
+#define HEX3D_GLOBALS_HPP
+
+#define HEX3D_ALL_DYN_LINK
+
+#endif // HEX3D_GLOBALS_HPP
